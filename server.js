@@ -2,13 +2,18 @@ const express = require('express')
 //import mongoose from 'mongoose'
 //import Cors from 'cors'
 const path = require('path')
+const { logger } = require('./middleware/logger')
 
 // App config
 const app = express()
 const port = process.env.PORT || 8001
 
+// Middlewares
+app.use(logger)
+app.use(express.json())
+
 // API Endpoints
-app.use('/', express.static(path.join(__dirname, '/public')))
+app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
 app.all('*', (req, res) => {
     res.status(404)
