@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 //import mongoose from 'mongoose'
 const cors = require('cors')
@@ -10,6 +11,7 @@ const corsOptions = require('./config/corsOptions')
 // App config
 const app = express()
 const port = process.env.PORT || 8001
+console.log(process.env.NODE_ENV)
 
 // Middlewares
 app.use(logger)
